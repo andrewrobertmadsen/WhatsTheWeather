@@ -1,6 +1,7 @@
 package weather
 
 import (
+	"WhatsTheWeather/geocode"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -8,7 +9,7 @@ import (
 )
 
 type Grid struct {
-	Id string
+	Id         string
 	Properties GridProperties
 }
 
@@ -21,8 +22,8 @@ type GridProperties struct {
 	ObservationStations string
 }
 
-func GridFromLatLong(lat, long float64) Grid {
-	endpoint := fmt.Sprintf("https://api.weather.gov/points/%+v,%+v", lat, long)
+func GridFromLatLong(latLong geocode.LatLong) Grid {
+	endpoint := fmt.Sprintf("https://api.weather.gov/points/%+v,%+v", latLong.Lat, latLong.Long)
 	r, err := http.Get(endpoint)
 	if err != nil {
 		panic("Error during request for grid.")

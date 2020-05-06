@@ -1,9 +1,13 @@
 package weather
 
-import "testing"
+import (
+	"WhatsTheWeather/geocode"
+	"testing"
+)
 
 func TestGridFromLatLong(t *testing.T) {
-	got := GridFromLatLong(39.7456, -97.0892)
+	latLong := geocode.LatLong{39.7456, -97.0892}
+	got := GridFromLatLong(latLong)
 	gridProperties := GridProperties{
 		"TOP",
 		"https://api.weather.gov/offices/TOP",

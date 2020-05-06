@@ -31,8 +31,8 @@ type Period struct {
 	WindSpeed string
 	WindDirection string
 	Icon string
-	ShortForcast string
-	DetailedForcast string
+	ShortForecast string
+	DetailedForecast string
 }
 
 func ForecastForGrid(grid Grid) Forecast {
@@ -46,7 +46,7 @@ func ForecastForGrid(grid Grid) Forecast {
 		panic("Error reading response for forecast.")
 	}
 	var forecast Forecast
-	err = json.Unmarshal(bodyBytes, &grid)
+	err = json.Unmarshal(bodyBytes, &forecast)
 	if err != nil {
 		panic("Error parsing json for forecast.")
 	}
